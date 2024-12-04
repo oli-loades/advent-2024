@@ -1,15 +1,15 @@
 INPUT_FILENAME = "input.txt"
 
 def get_input():
-    f = open(INPUT_FILENAME, "r")
+    f = open(INPUT_FILENAME, "r", encoding="utf-8")
     return [[int(vals) for vals in line.split()] for line in f ]
 
-def row_safe(list):
-    if list != sorted(list) and list != sorted(list, reverse=True):
+def row_safe(row):
+    if row != sorted(row) and row != sorted(row, reverse=True):
         return False
     
-    for x in range(len(list)-1):
-        if not 1<=abs(list[x]-list[x+1])<=3:
+    for x in range(len(row)-1):
+        if not 1<=abs(row[x]-row[x+1])<=3:
             return False
     return True
 
@@ -17,11 +17,11 @@ def matrix_safe_count(matrix, func):
     safe = [func(row) for row in matrix]
     return safe.count(True)
 
-def safe_with_removal(list):
-    if (row_safe(list) == False):
-        for x in range(len(list)):
-            new_list = list[:x] + list[x+1:]
-            if row_safe(new_list) == True:
+def safe_with_removal(row):
+    if (not row_safe(row)):
+        for x in range(len(row)):
+            new_list = row[:x] + row[x+1:]
+            if row_safe(new_list):
                 return True
         return False
     else:

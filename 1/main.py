@@ -2,7 +2,7 @@ INPUT_FILENAME = "input.txt"
 
 def get_input():
     left, right = [], []
-    f = open(INPUT_FILENAME, "r")
+    f = open(INPUT_FILENAME, "r", encoding="utf-8")
     for line in f:
         values = line.split()
         left.append(int(values[0]))
@@ -12,8 +12,8 @@ def get_input():
 
 def find_diff(first_list, second_list):
     diff_sum = 0
-    for x in range(len(first_list)):
-        diff_sum += abs(first_list[x] - second_list[x])
+    for i, x in enumerate(first_list):
+        diff_sum += abs(x - second_list[i])
     return diff_sum
 
 def find_sim(first_list, second_list):
@@ -22,10 +22,10 @@ def find_sim(first_list, second_list):
         sim_sum += second_list.count(x)*x
     return sim_sum
 
-input = get_input()
+lists = get_input()
 
-diff = find_diff(input[0], input[1])
+diff = find_diff(lists[0], lists[1])
 print(diff)
 
-sim = find_sim(input[0], input[1])
+sim = find_sim(lists[0], lists[1])
 print(sim)

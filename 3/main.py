@@ -3,7 +3,7 @@ import re
 INPUT_FILENAME = "input.txt"
 
 def part_one():
-    f = open(INPUT_FILENAME, "r")
+    f = open(INPUT_FILENAME, "r", encoding="utf-8")
     pattern = r"mul\((\d+),(\d+)\)"
     total = 0
     for line in f:
@@ -12,7 +12,7 @@ def part_one():
     print("part one: ", total)
 
 def part_two():
-    f = open(INPUT_FILENAME, "r")
+    f = open(INPUT_FILENAME, "r", encoding="utf-8")
     pattern = r"mul\((\d+),(\d+)\)|(do\(\))|(don't\(\))"
     total = 0
     disabled = False
