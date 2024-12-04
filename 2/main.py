@@ -5,7 +5,6 @@ def get_input():
     return [[int(vals) for vals in line.split()] for line in f ]
 
 def row_safe(list):
-    # check that all values are increasing or decreasing
     if list != sorted(list) and list != sorted(list, reverse=True):
         return False
     
@@ -14,10 +13,22 @@ def row_safe(list):
             return False
     return True
 
-def matrix_safe(matrix):
-    return [row_safe(row) for row in matrix]
+def matrix_safe_count(matrix, func):
+    safe = [func(row) for row in matrix]
+    return safe.count(True)
+
+def safe_with_removal(list):
+    if (row_safe(list) == False):
+        for x in range(len(list)):
+            new_list = list[:x] + list[x+1:]
+            if row_safe(new_list) == True:
+                return True
+        return False
+    else:
+        return True
 
 intput_matrix = get_input()
-safe = matrix_safe(intput_matrix)
-safe_count = safe.count(True)
-print(safe_count)
+part_one = matrix_safe_count(intput_matrix, row_safe)
+print("part one: ",part_one)
+part_two = matrix_safe_count(intput_matrix, safe_with_removal)
+print("part two: ", part_two)
