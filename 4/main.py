@@ -33,9 +33,21 @@ def part_one(grid):
                     found.append((row,col, "NW"))
     print(len(found))
 
+def part_two(grid):
+    options = ["MMSS", "SMMS", "SSMM", "MSSM"]
+    total = 0
+    for row in range(1, len(grid)-1):
+        for col in range(1, len(grid[row])-1):
+            char = grid[row][col] 
+            if char == 'A' and options.count(grid[row-1][col-1] + grid[row-1][col+1] + grid[row+1][col+1] + grid[row+1][col-1]) == 1:
+                total += 1
+    print(total)
+
 f = open(INPUT_FILENAME, "r")
 grid = [[c for c in line if c.isalpha()] for line in f]
 part_one(grid)
+part_two(grid)
+
 
 
 
