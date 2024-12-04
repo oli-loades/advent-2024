@@ -3,37 +3,36 @@ INPUT_FILENAME = "input.txt"
 def validate_xmas(xmas):
     return xmas == "XMAS" or xmas[::-1] == "XMAS"
 
-def part_one(grid):
-    found = []
-    for row in range(len(grid)):
-        for col in range(len(grid[row])):
-            char = grid[row][col] 
+def part_one():
+    total = 0
+    for row_index, row in enumerate(grid):
+        for col_idenx, char in enumerate(row):
             if char == 'X':
 
-                check_north = row - 3 >= 0
-                check_east = col + 3 < len(grid[row])
-                check_south = row + 3 < len(grid)
-                check_west = col - 3 >= 0
+                check_north = row_index - 3 >= 0
+                check_east = col_idenx + 3 < len(row)
+                check_south = row_index + 3 < len(grid)
+                check_west = col_idenx - 3 >= 0
 
-                if check_north and validate_xmas("".join(grid[i][col] for i in range(row, row-4, -1))):
-                    found.append((row,col, "N"))
-                if (check_north and check_east) and validate_xmas("".join(grid[row-i][col+i] for i in range(4))):
-                    found.append((row,col, "NE"))
-                if check_east and validate_xmas("".join(grid[row][i]  for i in range(col, col+4))):
-                    found.append((row,col, "E"))
-                if (check_south and check_east) and validate_xmas("".join(grid[row+i][col+i] for i in range(4))):
-                    found.append((row,col, "SE"))
-                if check_south and validate_xmas("".join(grid[i][col] for i in range(row, row+4))):
-                    found.append((row,col, "S"))
-                if (check_south and check_west) and validate_xmas("".join(grid[row+i][col-i] for i in range(4))):
-                    found.append((row,col, "SW"))
-                if check_west and validate_xmas("".join(grid[row][i] for i in range(col, col-4, -1))):
-                    found.append((row,col, "W"))
-                if (check_north and check_west) and validate_xmas("".join(grid[row-i][col-i] for i in range(4))):
-                    found.append((row,col, "NW"))
-    print(len(found))
+                if check_north and validate_xmas("".join(grid[i][col_idenx] for i in range(row_index, row_index-4, -1))):
+                    total += 1
+                if (check_north and check_east) and validate_xmas("".join(grid[row_index-i][col_idenx+i] for i in range(4))):
+                    total += 1
+                if check_east and validate_xmas("".join(grid[row_index][i]  for i in range(col_idenx, col_idenx+4))):
+                    total += 1
+                if (check_south and check_east) and validate_xmas("".join(grid[row_index+i][col_idenx+i] for i in range(4))):
+                    total += 1
+                if check_south and validate_xmas("".join(grid[i][col_idenx] for i in range(row_index, row_index+4))):
+                    total += 1
+                if (check_south and check_west) and validate_xmas("".join(grid[row_index+i][col_idenx-i] for i in range(4))):
+                    total += 1
+                if check_west and validate_xmas("".join(grid[row_index][i] for i in range(col_idenx, col_idenx-4, -1))):
+                    total += 1
+                if (check_north and check_west) and validate_xmas("".join(grid[row_index-i][col_idenx-i] for i in range(4))):
+                    total += 1
+    print(total)
 
-def part_two(grid):
+def part_two():
     options = ["MMSS", "SMMS", "SSMM", "MSSM"]
     total = 0
     for row in range(1, len(grid)-1):
@@ -43,12 +42,7 @@ def part_two(grid):
                 total += 1
     print(total)
 
-f = open(INPUT_FILENAME, "r")
+f = open(INPUT_FILENAME, "r", encoding="utf-8")
 grid = [[c for c in line if c.isalpha()] for line in f]
-part_one(grid)
-part_two(grid)
-
-
-
-
-
+part_one()
+part_two()
