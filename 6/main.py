@@ -1,17 +1,16 @@
 INPUT_FILENAME = "input.txt"
 
-
 def get_input():
     f = open(INPUT_FILENAME, "r", encoding="utf-8")
     return [list(line.strip()) for line in f]
 
-def find_start_pos(grid):
+def find_start_pos():
     for row_index, row in enumerate(grid):
         for col_index, col in enumerate(row):
             if col == '^':
                 return (row_index, col_index)
 
-def track(grid, start_pos):
+def part_one():
     direction = 1
     stop = False
     row, col = start_pos
@@ -46,5 +45,5 @@ def track(grid, start_pos):
     print("part one:", len(visited))
 
 grid = get_input()
-start_pos = find_start_pos(grid)
-track(grid, start_pos)
+start_pos = find_start_pos()
+part_one()
