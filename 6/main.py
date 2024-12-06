@@ -1,8 +1,8 @@
 INPUT_FILENAME = "input.txt"
 
 def get_input():
-    f = open(INPUT_FILENAME, "r", encoding="utf-8")
-    return [list(line.strip()) for line in f]
+    with open(INPUT_FILENAME, "r", encoding="utf-8") as f:
+        return [list(line.strip()) for line in f]
 
 def find_start_pos():
     for row_index, row in enumerate(grid):

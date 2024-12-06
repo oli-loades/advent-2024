@@ -42,7 +42,7 @@ def part_two():
                 total += 1
     print(total)
 
-f = open(INPUT_FILENAME, "r", encoding="utf-8")
-grid = [[c for c in line if c.isalpha()] for line in f]
-part_one()
-part_two()
+with open(INPUT_FILENAME, "r", encoding="utf-8") as f:
+    grid = [[c for c in line if c.isalpha()] for line in f]
+    part_one()
+    part_two()

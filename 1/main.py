@@ -1,14 +1,13 @@
 INPUT_FILENAME = "input.txt"
 
-def get_input():
-    left, right = [], []
-    f = open(INPUT_FILENAME, "r", encoding="utf-8")
-    for line in f:
-        values = line.split()
-        left.append(int(values[0]))
-        right.append(int(values[1]))
-
-    return (sorted(left), sorted(right))
+def get_input(): 
+    with open(INPUT_FILENAME, "r", encoding="utf-8") as f:
+        left, right = [], []
+        for line in f:
+            values = line.split()
+            left.append(int(values[0]))
+            right.append(int(values[1]))
+        return (sorted(left), sorted(right))
 
 def find_diff(first_list, second_list):
     diff_sum = 0

@@ -3,17 +3,16 @@ from collections import defaultdict
 INPUT_FILENAME = "input.txt"
 
 def get_input():
-    f = open(INPUT_FILENAME, "r", encoding="utf-8")
-
-    r, s = defaultdict(set), []
-    for line in f:
-        if "|" in line:
-            a, b = line.split("|")
-            a, b = int(a), int(b)
-            r[b].add(a)
-        elif "," in line:
-            section = [int(vals) for vals in line.split(",")]
-            s.append(section)
+    with open(INPUT_FILENAME, "r", encoding="utf-8") as f:
+        r, s = defaultdict(set), []
+        for line in f:
+            if "|" in line:
+                a, b = line.split("|")
+                a, b = int(a), int(b)
+                r[b].add(a)
+            elif "," in line:
+                section = [int(vals) for vals in line.split(",")]
+                s.append(section)
     return r, s
 
 def validate_section(section):
