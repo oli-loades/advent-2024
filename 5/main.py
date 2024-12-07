@@ -26,7 +26,7 @@ def part_one():
     total = 0
     for section in sections:
         valid = validate_section(section)
-        if valid: 
+        if valid:
             total += section[len(section)//2]
     print(total)
 

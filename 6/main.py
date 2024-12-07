@@ -16,7 +16,7 @@ def part_one():
     row, col = start_pos
     visited = set()
     while not stop:
-        if direction == 1:          
+        if direction == 1:
             if grid[row-1][col] == '#':
                 direction = 2
             else:

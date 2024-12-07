@@ -37,7 +37,7 @@ def part_two():
     total = 0
     for row in range(1, len(grid)-1):
         for col in range(1, len(grid[row])-1):
-            char = grid[row][col] 
+            char = grid[row][col]
             if char == 'A' and options.count(grid[row-1][col-1] + grid[row-1][col+1] + grid[row+1][col+1] + grid[row+1][col-1]) == 1:
                 total += 1
     print(total)

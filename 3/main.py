@@ -23,7 +23,7 @@ def part_two():
                 if match[2] != "":
                     disabled = False
                 if match[3] != "":
-                    disabled = True      
+                    disabled = True
         print("part two: ", total)
 
 part_one()

@@ -1,6 +1,6 @@
 INPUT_FILENAME = "input.txt"
 
-def get_input(): 
+def get_input():
     with open(INPUT_FILENAME, "r", encoding="utf-8") as f:
         left, right = [], []
         for line in f:
